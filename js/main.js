@@ -21,17 +21,23 @@ var gGame = {
 const MINE = '💣';
 const FLAG = '<img class="flag" src="img/flag.png">';
 var gStopWatchInterval;
-var gTimeElapsed = '0:00.000';
-var livesCount = 3;
+var gTimeElapsed;
+var livesCount;
 var livesDisplay = '<img class="heart" src="img/life-1.png">';
+var gIsGameOver;
 
 
 function init(level) {
+    clearInterval(gStopWatchInterval);
+    gTimeElapsed = '0:00.000';
+    gGame.isOn = false;
+    livesCount = 3;
+    gIsGameOver = false;
     gLevel = level
     gBoard = buildBoard(gLevel.SIZE);
     renderBoard(gBoard);
-    gLevel = {};
     updateLives();
+    // gLevel = {};
 }
 function buildBoard(size) {
     var board = [];
@@ -51,7 +57,7 @@ function buildBoard(size) {
     // board[2][2].isMine = true;
     getRandomMines(board, gLevel.MINES);
     setMinesNegsCount(board);
-    console.table(board)
+    // console.table(board)
     return board;
 }
 function renderBoard(board) {
@@ -113,6 +119,7 @@ function countMines(board, pos, cell) {
 }
 
 function cellClicked(elCell, i, j) {
+    // if (gIsGameOver) return;
     var cell = gBoard[i][j]
     if (event.which == 3) {
         if (!cell.isMarked && !cell.isShown) {
@@ -121,12 +128,14 @@ function cellClicked(elCell, i, j) {
             cell.isMarked = false;
         }
     }
+    else if (cell.isShown) return;
     else if (!cell.isMarked) {
         cell.isShown = true;
     }
-    if (cell.isMine === true) {
+    if (cell.isMine === true && !cell.isMarked) {
         livesCount--;
         updateLives();
+        checkGameOver(gIsGameOver)
     }
     if (!gGame.isOn) {
         gGame.isOn = true;
@@ -141,6 +150,16 @@ function updateLives() {
     for (var i = 0; i < livesCount; i++) {
         elLives.innerHTML += livesDisplay
     }
+}
+
+function checkGameOver(gIsGameOver) {
+    if (livesCount === 0) {
+        var elGameOver = document.querySelector('.container')
+        elGameOver.innerHTML = '<button class="restart" onclick="init(gLevel)"><div id="slide">RETRY</div></button>';
+        clearInterval(gStopWatchInterval);
+        // gBoard[cell.isShown] = true
+        return true;
+    } return false
 }
 // function cellMarked(cell) {
 //     if (!cell.isMarked) {
@@ -189,15 +208,9 @@ function stopWatch() {
         milSecElapsed += 5;
         renderTime(milSecElapsed);
     }, 5);
-    clearInterval(gStopWatchInterval);
-}
-
-
-
-
-function checkGameOver() {
 
 }
+
 
 function expandShown(board, cell, i, j) {
 

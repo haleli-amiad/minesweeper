@@ -13,6 +13,52 @@ h1 {
     font-size: 3em;
 }
 
+.restart {
+    display: inline-flex;
+    height: 30px;
+    width: 150px;
+    border: 1px solid black;
+    margin: 20px 20px 20px 20px;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    background-color: white;
+    font-family: 'Courier Prime', monospace;
+    /* font-weight: bold; */
+    font-size: 1.5em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* .restart button {
+    position: relative;
+    transition: all .35s ease-Out;
+}
+
+#slide {
+    width: 100%;
+    height: 100%;
+    left: -200px;
+    background: black;
+    position: absolute;
+    transition: all .35s ease-Out;
+    bottom: 0;
+}
+
+.restart:hover #slide {
+    left: 0;
+    cursor: pointer;
+} */
+
+.restart:hover button {
+    color: #2D3142;
+}
+
 .flag {
     width: 20px;
     height: auto;
@@ -54,7 +100,7 @@ td:hover {
     font-size: 1.07em;
     letter-spacing: 4px;
     font-weight: bolder;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .easy:hover {
@@ -76,8 +122,8 @@ td:hover {
 .heart {
     margin-top: 20px;
     padding: 0px;
-    max-width: 60px;
-    max-height: 60px;
+    max-width: 90px;
+    max-height: 90px;
 }
 
 /* .how-many-lives {
