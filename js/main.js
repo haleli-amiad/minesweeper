@@ -85,7 +85,6 @@ function renderBoard(board) {
             var cellClass = getClassName({ i: i, j: j });
             if (currCell.isShown === true) cellClass += ' shown';
             strHTML += '\t<td class="' + cellClass + '"  onclick="cellClicked(this, ' + i + ', ' + j + ')" oncontextmenu="cellMarked(this, ' + i + ', ' + j + ')" >\n';
-
             if (currCell.isMine === true && currCell.isShown) {
                 strHTML += MINE;
             } else if (currCell.isShown && currCell.minesAroundCount !== 0) {
@@ -93,7 +92,6 @@ function renderBoard(board) {
             } else if (currCell.isMarked === true) {
                 strHTML += FLAG;
             }
-
             strHTML += '\t</td>\n';
         }
         strHTML += '</tr>';
@@ -128,7 +126,7 @@ function cellClicked(elCell, i, j) {
         return;
     }
     var clickedPos = { i: i, j: j };
-    var cell = gBoard[i][j]
+    var cell = gBoard[i][j];
     if (gIsFirstClick) {
         clickedPos.minesAroundCount === 0
         getRandomMines(gBoard, gLevel.MINES, cell);
@@ -158,11 +156,10 @@ function cellClicked(elCell, i, j) {
     renderBoard(gBoard);
 }
 
-
 function getRandomMines(board, numOfMines, firstCell) {
     for (var i = 0; i < numOfMines; i++) {
         var minePos = getRandPos(board);
-        var currPos = board[minePos.i][minePos.j]
+        var currPos = board[minePos.i][minePos.j];
         if (currPos !== firstCell) {
             board[minePos.i][minePos.j].isMine = true;
         }
@@ -176,12 +173,12 @@ function expandShown(board, pos, i, j) {
         for (var j = pos.j - 1; j <= pos.j + 1; j++) {
             if (j < 0 || j >= board[i].length) continue;
             if (i === pos.i && j === pos.j) continue;
-            var cell = board[i][j]
+            var cell = board[i][j];
             if (cell.isMine || cell.isMarked || cell.isShown || clickedCell.isMine) continue;
             else if (clickedCell.minesAroundCount === 0) {
-                cell.isShown = true
+                cell.isShown = true;
                 gGame.shownCount++;
-            };
+            }
         }
     }
     renderBoard(board)
@@ -218,14 +215,14 @@ function minesCounter(board, pos, cell) {
 
 function updateEmoji(emoji) {
     var elEmoji = document.querySelector('.emoji')
-    elEmoji.innerHTML = emoji
+    elEmoji.innerHTML = emoji;
 }
 
 function updateLives() {
     var elLives = document.querySelector('.lives')
     elLives.innerHTML = '';
     for (var i = 0; i < gLivesCount; i++) {
-        elLives.innerHTML += livesDisplay
+        elLives.innerHTML += livesDisplay;
     }
 }
 
@@ -241,8 +238,8 @@ function checkGameOver(gIsGameOver) {
             var elRetryBtn = document.querySelector('.lives')
             elRetryBtn.innerHTML = '<button class="restart" onclick="init(gLevel)"><div id="slide">RETRY</div></button>';
             clearInterval(gStopWatchInterval);
-            updateEmoji(SAD_FACE)
         }
+        updateEmoji(SAD_FACE)
         return true;
     } return false
 }
@@ -258,7 +255,6 @@ function checkIsVictory() {
     }
     return false;
 }
-
 
 function getRandPos(board) {
     var emptyPoses = [];
