@@ -4,13 +4,25 @@ body {
     text-transform: uppercase;
     font-family: 'Courier Prime', monospace;
     color: white;
-    /* contextMenuOnRightClick: none; */
 }
 
 h1 {
-    margin-top: 30px;
-    letter-spacing: 5px;
-    font-size: 3em;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 10px;
+    font-size: 3.3em;
+    color: white;
+    text-shadow: -1px -1px 0 rgb(94, 94, 94), 0.5px -1px 0 rgb(124, 124, 124), -1px 1px 0 rgb(97, 97, 97), 1px 1px 0 rgb(97, 97, 97);
+}
+
+.emoji img {
+    height: 60px;
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.emoji:hover {
+    cursor: pointer;
 }
 
 .restart {
@@ -28,57 +40,43 @@ h1 {
     margin-top: 15px;
     background-color: white;
     font-family: 'Courier Prime', monospace;
-    /* font-weight: bold; */
     font-size: 1.5em;
     position: relative;
     overflow: hidden;
     cursor: pointer;
 }
 
-/* .restart button {
-    position: relative;
-    transition: all .35s ease-Out;
-}
-
-#slide {
-    width: 100%;
-    height: 100%;
-    left: -200px;
-    background: black;
-    position: absolute;
-    transition: all .35s ease-Out;
-    bottom: 0;
-}
-
-.restart:hover #slide {
-    left: 0;
-    cursor: pointer;
-} */
-
-.restart:hover button {
-    color: #2D3142;
+.restart:hover {
+    background-color: rgb(238, 226, 226);
 }
 
 .flag {
-    width: 20px;
+    padding-top: 5px;
+    padding-right: 1px;
+    width: 22px;
     height: auto;
 }
 
 .board td {
     color: black;
-    width: 40px;
-    height: 40px;
+    width: 33px;
+    height: 33px;
     text-align: center;
     font-size: 1em;
 }
 
+.shown {
+    background-color: rgb(250, 237, 237);
+}
+
 table {
     margin: 0 auto;
-    margin-top: 20px;
-    border: 1px solid black;
+    margin-top: 10px;
+    border: 0.3px solid black;
 }
 
 td {
+    font-weight: bold;
     height: 50px;
     width: 50px;
     border: 1px solid black;
@@ -86,21 +84,33 @@ td {
 }
 
 td:hover {
-    background-color: rgb(249, 241, 241);
+    background-color: rgb(250, 237, 237);
 }
 
 .timer {
     letter-spacing: 2px;
     font-size: 1.3em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .levels {
-    word-spacing: 60px;
-    font-size: 1.07em;
+    margin-top: 15px;
+    font-size: 1.3em;
     letter-spacing: 4px;
-    font-weight: bolder;
-    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.easy {
+    padding: 20px;
+}
+
+.medium {
+    padding: 20px;
+    /* margin-bottom: 40px; */
+}
+
+.hard {
+    padding: 20px;
 }
 
 .easy:hover {
@@ -115,21 +125,53 @@ td:hover {
     cursor: pointer;
 }
 
-.container {
-    margin: 0 auto;
-}
-
 .heart {
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 0px;
     max-width: 90px;
     max-height: 90px;
 }
 
-/* .how-many-lives {
-    font-size: 3em;
+.btn {
     position: relative;
-    bottom: -60px;
-    right: 0px;
-    color: rgb(249, 241, 241);
-} */
+    color: white;
+    width: 256px;
+    height: 44px;
+    line-height: 64px;
+    transition: all 0.3s;
+}
+
+.btn::before, .btn::after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 40%;
+}
+
+.btn-one::before {
+    justify-content: center;
+    left: 4px;
+    z-index: 1;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(0.1, 1);
+}
+
+.btn-one:hover::before {
+    opacity: 10;
+    transform: scale(1, 1);
+}
+
+.btn-one::after {
+    transition: all 0.9s;
+}
+
+.btn-one:hover::after {
+    transform: scale(1, .1);
+    opacity: 0;
+}
