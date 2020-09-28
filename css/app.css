@@ -70,6 +70,8 @@ h1 {
 }
 
 table {
+    /* float: center; */
+    position: relative;
     margin: 0 auto;
     margin-top: 10px;
     border: 0.3px solid black;
@@ -171,4 +173,19 @@ td:hover {
 .btn-one:hover::after {
     transform: scale(1, .1);
     opacity: 0;
+}
+
+/* .hints {} */
+
+.hint {
+    position: absolute;
+    top: 250px;
+    left: 620px;
+}
+
+.hint img {
+    /* float: left; */
+    margin-right: 0px;
+    max-width: 60px;
+    max-height: 45px;
 }

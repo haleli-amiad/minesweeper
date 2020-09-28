@@ -37,6 +37,7 @@ function init(level) {
     renderTime(0);
 }
 
+
 function chooseLevel(level) {
     if (level === 'easy') {
         level = {
@@ -174,15 +175,19 @@ function expandShown(board, pos, i, j) {
             if (j < 0 || j >= board[i].length) continue;
             if (i === pos.i && j === pos.j) continue;
             var cell = board[i][j];
+            var cellPos = { i: i, j: j };
             if (cell.isMine || cell.isMarked || cell.isShown || clickedCell.isMine) continue;
-            else if (clickedCell.minesAroundCount === 0) {
+            if (clickedCell.minesAroundCount === 0) {
                 cell.isShown = true;
+                expandShown(board, cellPos, i, j)
                 gGame.shownCount++;
             }
         }
     }
     renderBoard(board)
 }
+
+
 
 function getClassName(location) {
     var cellClass = 'cell-' + location.i + '-' + location.j;
